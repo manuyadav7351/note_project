@@ -1,0 +1,34 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+<span class="mid">
+    <h1>Register</h1>
+    <!-- registration_form.html -->
+
+<form method="post" class="register-form">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}">Username</label>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+    
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}">Password</label>
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+    </div>
+    
+    <div class="form-group">
+      <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+  
+    <a href="{% url 'login' %}">Already have an account? Login</a>
+</span>
+{% endblock %}

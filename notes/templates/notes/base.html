@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Note App</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="top">
+        <h1 class="heading">Note App</h1>
+        {% if user.is_authenticated %}
+        <p class="subheading">Welcome, {{ user.username }}!</p>
+    </div>
+    <div class="bottom">
+    <span class="buttons">
+        <a href="{% url 'note-list' %}">My Notes</a>
+        <a href="{% url 'note-create' %}">Create Note</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </span>
+    {% else %}
+    <span class="buttons buttonsof">
+        <div class="register-btn">
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+        <div class="login-btn">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </span>
+    {% endif %}
+    <hr>
+    <span class="mid">
+        {% block content %}
+        {% endblock %}
+    </span>
+    </div>
+</body>
+
+</html>
